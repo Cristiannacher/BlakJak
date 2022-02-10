@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Jugador {
 
@@ -16,13 +17,7 @@ public class Jugador {
     }
 
 
-    private String agrupacartas() {
 
-        String cartasBaraja = "";
-        for (Carta carta : cartasJugador)
-            cartasBaraja += carta + ",";
-        return cartasBaraja;
-    }
 
     public int getPuntuacion() {
         int puntuacion = 0;
@@ -44,6 +39,13 @@ public class Jugador {
     @Override
     public String toString() {
         return nombre + ":" + agrupacartas();
+    }
+    private String agrupacartas() {
+
+        String cartasBaraja = "";
+        for (Carta carta : cartasJugador)
+            cartasBaraja += carta + ",";
+        return cartasBaraja.substring(0, cartasBaraja.length() -1);
     }
 
     public String getNombre() {
