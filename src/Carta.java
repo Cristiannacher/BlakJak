@@ -7,6 +7,7 @@ public class Carta {
         ROMBOS,
         TREBOLES;
     }
+
     private Palo palo;
 
     public Carta(int numero, Palo palo) {
@@ -14,28 +15,38 @@ public class Carta {
         this.palo = palo;
     }
 
-    public static Palo[]  cartas = {Palo.CORAZONES, Palo.PICAS, Palo.ROMBOS, Palo.TREBOLES};
+    public static Palo[] cartas = {Palo.CORAZONES, Palo.PICAS, Palo.ROMBOS, Palo.TREBOLES};
 
 
     @Override
     public String toString() {
+        String valor = String.valueOf(numero);
+        if (numero == 1)
+          valor = "A";
+        if (numero == 11)
+            valor = "J";
+        if (numero == 12)
+            valor = "Q";
+        if (numero == 13)
+            valor = "K";
+
         switch (palo) {
             case CORAZONES:
-                return numero + " de" + " ♥";
+                return valor + " de" + " ♥";
             case PICAS:
-                return numero + " de" + " ♠";
+                return valor + " de" + " ♠";
             case ROMBOS:
-                return numero + " de" + " ♦";
-            case TREBOLES:
-                return numero + " de" + " ♣";
+                return valor + " de" + " ♦";
+            default:
+                return valor + " de" + " ♣";
         }
-        return null;
     }
 
     public int getNumero() {
         return numero;
     }
-    public Palo getPalo(){
+
+    public Palo getPalo() {
         return palo;
     }
 

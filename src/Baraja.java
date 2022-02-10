@@ -17,7 +17,7 @@ public class Baraja {
 
     Random random = new Random();
 
-    public void Barajar() {
+    public void barajar() {
         List<Carta> barajaBarajada = new LinkedList<>();
 
         while (!barajaCartas.isEmpty()) {
@@ -28,7 +28,7 @@ public class Baraja {
         barajaCartas = barajaBarajada;
     }
 
-    public Carta extraerCartas() {
+    public Carta extraerCarta() {
         int numeroAleatorio = random.nextInt(barajaCartas.size());
         return barajaCartas.remove(numeroAleatorio);
     }
@@ -38,24 +38,29 @@ public class Baraja {
             System.out.println(carta);
     }
 
-    private List<Carta> cartasPalo(Carta.Palo palo) {
-        List<Carta> cartasDelPalo = new LinkedList<>();
-        for (Carta carta : barajaCartas)
-            if (carta.getPalo() == palo)
-                cartasDelPalo.add(carta);
-        return cartasDelPalo;
+    String pikas = "";
+    String corazones = "";
+    String rombos = "";
+    String treboles = "";
+
+    private void agrupaCartasPorPalo() {
+        for (Carta carta : barajaCartas) {
+            if (carta.getPalo() == Carta.Palo.PICAS)
+                pikas += carta + "  ";
+            if (carta.getPalo() == Carta.Palo.CORAZONES)
+                corazones += carta + "  ";
+            if (carta.getPalo() == Carta.Palo.ROMBOS)
+                rombos += carta + "  ";
+            if (carta.getPalo() == Carta.Palo.TREBOLES)
+                treboles += carta + "  ";
+        }
     }
+
 
     @Override
     public String toString() {
-        imprimeCartas(cartasPalo(Carta.Palo.PICAS));
-        imprimeCartas(cartasPalo(Carta.Palo.PICAS));
-        imprimeCartas(cartasPalo(Carta.Palo.PICAS));
-        imprimeCartas(cartasPalo(Carta.Palo.PICAS));
-        return "Baraja{" +
-                "barajaCartas=" + barajaCartas +
-                ", random=" + random +
-                '}';
+        agrupaCartasPorPalo();
+        return pikas + "\n" + corazones +"\n" +  rombos + "\n" + treboles;
     }
 }
 

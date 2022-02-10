@@ -1,14 +1,34 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-        Carta cuatroDeCorazones = new Carta(4, Carta.Palo.CORAZONES);
-        Carta nueveDePicas = new Carta(9, Carta.Palo.PICAS);
+        Scanner reader = new Scanner(System.in);
 
         Baraja baraja = new Baraja();
+        baraja.barajar();
+        Jugador pedro = new Jugador("Pedro");
+        pedro.repartirCarta(baraja.extraerCarta());
+        pedro.repartirCarta(baraja.extraerCarta());
 
-        System.out.println(cuatroDeCorazones);
+        String contestacion = "";
 
-        baraja.imprimeBaraja();
+        System.out.println(pedro);
+        System.out.println(pedro.getPuntuacion());
 
+        do {
+            System.out.println("Quieres otra carta??");
+            contestacion = reader.next();
+            if (contestacion.equals("si")) {
+                pedro.repartirCarta(baraja.extraerCarta());
+                System.out.println(pedro);
+                System.out.println(pedro.getPuntuacion());
+            }
+
+        } while (contestacion.equals("si") && pedro.getPuntuacion() <= 21);
+
+        if(pedro.getPuntuacion()> 21)
+        System.out.println("HAS PERDIDO !!!");
+        else System.out.println("JIJIJI JA");
     }
 }
